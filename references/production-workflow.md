@@ -26,7 +26,7 @@
 - 数据口径：公开、虚构、脱敏或冻结。
 - 本片采用与弃用的 Shotcraft 镜头语法及原因。
 
-本技能默认使用 `$video-shotcraft` 的自主自由创作路线。扫描镜头卡 frontmatter，选中卡后必须读取卡片全文和准确 demo TSX，不凭卡名重写一份近似动画。
+本技能默认使用内置的 Shotcraft 自主自由创作路线，见 [Shotcraft 动效基线](shotcraft-baseline.md)。优先复用 `assets/golden-reference/src/scenes/` 中已验收镜头；新增镜头时必须读取对应 TSX 和基线规则，不凭名称重写近似动画。
 
 ## 3. 生成分镜
 

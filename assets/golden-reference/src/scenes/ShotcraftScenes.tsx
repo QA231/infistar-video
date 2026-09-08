@@ -4,7 +4,7 @@ import {C, Cursor, FONT, Grain, MONO, OfficialVideo, clamp, seg} from '../compon
 
 export const PluginEcosystemScene: React.FC = () => {
   const frame = useCurrentFrame();
-  // video-shotcraft integration-hub-map timing: 35f fast flip, 2f edge flash,
+  // shotcraft integration-hub-map timing: 35f fast flip, 2f edge flash,
   // icons same frame, pipes +10f, pipes grow in 9f, then continuous 4.6px/f flow.
   const rot = interpolate(frame, [14, 49], [0, 180], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   const zoom = interpolate(frame, [0, 14, 82], [1.75, 1.62, 1], {extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic)});

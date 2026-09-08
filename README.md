@@ -42,14 +42,15 @@ C:\Users\<你的用户名>\.codex\skills\infistar-video
 
 具体以你使用的 Claude Code 版本和技能加载规则为准。
 
-## 依赖技能
+## 自包含规则
 
-启动时会尝试加载：
+本技能已经把关键上游规则内置，不需要安装其他技能：
 
-- `$douyin-review-video-standard`：隐私、真实证据和验收基线。
-- `$video-shotcraft`：镜头卡、运动语法和自主自由创作路线。
+- `references/evidence-and-review.md`：隐私、真实证据、节奏、字幕和验收基线。
+- `references/shotcraft-baseline.md`：自主自由创作路线、真实素材、镜头动效、声音设计和独立终检。
+- `references/style-dna.md`、`references/production-workflow.md`、`references/qa-checklist.md`：本技能自身的风格、制作和验收规则。
 
-这两个依赖不会随本仓库分发。使用前请先安装它们，或在自己的工作区提供等价的隐私、证据、镜头动效与验收规范。缺失时，本技能的核心风格和 Remotion 工程仍可参考，但不能自动获得这些上游规则。
+精简规则的来源与许可见 `THIRD_PARTY_NOTICES.md`。
 
 ## 参考工程
 

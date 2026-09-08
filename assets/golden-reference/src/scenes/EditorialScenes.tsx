@@ -109,7 +109,7 @@ export const NotModelScene: React.FC = () => {
   const frame = useCurrentFrame();
   const first = seg(frame, 20, 54);
   const second = seg(frame, 74, 108);
-  const harness = seg(frame, 142, 176);
+  const productMark = seg(frame, 142, 176);
   const items = [
     {title: '新模型', sub: '像某个基础模型这样', p: first},
     {title: '浏览器插件', sub: '装上就能用的小扩展', p: second},
@@ -125,7 +125,7 @@ export const NotModelScene: React.FC = () => {
           </div>
         ))}
       </div>
-      <div style={{position: 'absolute', left: '50%', top: 790, transform: `translate(-50%,-50%) scale(${0.82 + harness * 0.18})`, opacity: harness, display: 'flex', alignItems: 'center', gap: 18}}>
+      <div style={{position: 'absolute', left: '50%', top: 790, transform: `translate(-50%,-50%) scale(${0.82 + productMark * 0.18})`, opacity: productMark, display: 'flex', alignItems: 'center', gap: 18}}>
         <Img src={staticFile('media/product-favicon.svg')} style={{width: 76, height: 76}} />
       </div>
     </Background>

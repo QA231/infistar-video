@@ -1,0 +1,22 @@
+{
+  "name": "infistar-video-reference",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "render:bgm": "remotion render src/index.ts InfistarVideo out/infistar-video-bgm.mp4 --props=props-bgm.json",
+    "render:nobgm": "remotion render src/index.ts InfistarVideo out/infistar-video-no-bgm.mp4 --props=props-no-bgm.json",
+    "still": "remotion still src/index.ts InfistarVideo"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "@remotion/media": "4.0.484",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "typescript": "6.0.3"
+  }
+}

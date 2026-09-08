@@ -1,8 +1,8 @@
 ---
 name: infistar-video
-description: "Turn a Chinese oral script into a complete multi-format faceless explainer video with a clean editorial visual style: light editorial cards alternating with dark product/UI scenes, large Chinese captions, real evidence, Shotcraft motion, stable Remotion export, and no decorative microcopy. Use when the user supplies a 口播稿 and asks for an Infistar-style AI explainer or a clean editorial product walkthrough; do not use for unrelated cinematic or talking-head videos."
+description: "Turn a Chinese oral script into a complete multi-format explainer video with a clean editorial visual style: light editorial cards alternating with dark product/UI scenes, large Chinese captions, real evidence, Shotcraft motion, stable Remotion export, and no decorative microcopy. Use when the user supplies a 口播稿 and asks for an Infistar-style AI explainer or a clean editorial product walkthrough; do not use for unrelated cinematic or talking-head videos."
 metadata:
-  short-description: 把中文口播稿自动制作成无真人出镜多画幅解说视频
+  short-description: 把中文口播稿自动制作成多画幅解说视频
 ---
 
 # Infistar 口播成片
@@ -18,7 +18,7 @@ metadata:
 
 ## 默认成片规格
 
-- 默认 16:9 横屏，1920×1080，30fps，中文，无真人出镜。
+- 默认 16:9 横屏，1920×1080，30fps，中文。
 - 画幅不是固定值：开始制作前根据用户要求、目标平台或项目 `AGENTS.md` 在 `16:9 横屏 / 9:16 竖屏 / 1:1 方形` 中确定，并写入 `design-spec.md`。不得在未确认平台时擅自套用单一画幅，也不得用拉伸、黑边或裁切替代真正的版式适配。
 - 时长由口播稿决定；不为凑时长重复素材或拉长静态画面。
 - 以真实网页、软件操作、终端、模型输出和官方素材为证据主体；抽象图形只解释概念。

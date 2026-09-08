@@ -1,7 +1,7 @@
 interface:
   display_name: "Infistar 口播成片"
-  short_description: "把中文口播稿自动制作成已验收的无真人出镜多画幅 AI 产品解说视频"
+  short_description: "把中文口播稿自动制作成已验收的无真人出镜多画幅解说视频"
   brand_color: "#3451B2"
-  default_prompt: "Use $infistar-video to turn my Chinese oral script into a complete faceless AI product explainer in the validated clean editorial style, with selectable 16:9, 9:16, or 1:1 format."
+  default_prompt: "Use $infistar-video to turn my Chinese oral script into a complete faceless explainer video in the validated clean editorial style, with selectable 16:9, 9:16, or 1:1 format."
 policy:
   allow_implicit_invocation: true

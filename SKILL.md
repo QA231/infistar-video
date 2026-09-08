@@ -1,8 +1,8 @@
 ---
 name: infistar-video
-description: "Turn a Chinese oral script into a complete multi-format faceless AI product explainer with a clean editorial visual style: light editorial cards alternating with dark product/UI scenes, large Chinese captions, real evidence, Shotcraft motion, stable Remotion export, and no decorative microcopy. Use when the user supplies a 口播稿 and asks for an Infistar-style AI explainer or a clean editorial product walkthrough; do not use for unrelated cinematic or talking-head videos."
+description: "Turn a Chinese oral script into a complete multi-format faceless explainer video with a clean editorial visual style: light editorial cards alternating with dark product/UI scenes, large Chinese captions, real evidence, Shotcraft motion, stable Remotion export, and no decorative microcopy. Use when the user supplies a 口播稿 and asks for an Infistar-style AI explainer or a clean editorial product walkthrough; do not use for unrelated cinematic or talking-head videos."
 metadata:
-  short-description: 把中文口播稿自动制作成无真人出镜多画幅 AI 产品解说视频
+  short-description: 把中文口播稿自动制作成无真人出镜多画幅解说视频
 ---
 
 # Infistar 口播成片

@@ -16,4 +16,4 @@ Only the product-video production concepts relevant to `infistar-video` were ada
 - Upstream: local Codex skill `douyin-review-video-standard`
 - No license file was present in the source skill.
 
-Its evidence, privacy, pacing, caption, and acceptance requirements were re-expressed for the 16:9 Infistar editorial workflow in `references/evidence-and-review.md`; no upstream asset files are bundled here.
+Its evidence, privacy, pacing, caption, and acceptance requirements were re-expressed for the multi-format Infistar editorial workflow in `references/evidence-and-review.md`; no upstream asset files are bundled here.

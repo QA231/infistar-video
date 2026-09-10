@@ -66,13 +66,13 @@ const clauses = (text: string) => {
   return pages.length ? pages : [text];
 };
 
-const EMPHASIS = [
+export const DEFAULT_EMPHASIS = [
   'Agent Studio', 'Codex', 'Agent', 'API Key', 'Skills', 'Everything is a Plugin',
   '一切皆插件', '开发者预览版', '工作区', '标准模式', 'PTC', '极简模式', '创造模式', '插件',
 ];
 
-const Highlighted: React.FC<{text: string}> = ({text}) => {
-  const key = EMPHASIS.find((candidate) => text.includes(candidate));
+const Highlighted: React.FC<{text: string; terms: string[]}> = ({text, terms}) => {
+  const key = terms.find((candidate) => text.includes(candidate));
   if (!key) return <>{text}</>;
   const [before, after] = text.split(key);
   return (
@@ -84,11 +84,18 @@ const Highlighted: React.FC<{text: string}> = ({text}) => {
   );
 };
 
-export const Caption: React.FC<{text: string; duration: number; label: string; dark?: boolean}> = ({
+export const Caption: React.FC<{
+  text: string;
+  duration: number;
+  label: string;
+  dark?: boolean;
+  emphasisTerms?: string[];
+}> = ({
   text,
   duration,
   label,
   dark = true,
+  emphasisTerms = DEFAULT_EMPHASIS,
 }) => {
   const frame = useCurrentFrame();
   const pages = clauses(text);
@@ -144,7 +151,7 @@ export const Caption: React.FC<{text: string; duration: number; label: string; d
             transform: `translateY(${(1 - fade) * 10}px)`,
           }}
         >
-          <Highlighted text={pages[index]} />
+          <Highlighted text={pages[index]} terms={emphasisTerms} />
         </div>
       </div>
       <div style={{position: 'absolute', left: 82, right: 82, bottom: 34, height: 3, background: dark ? 'rgba(255,255,255,.10)' : 'rgba(10,12,18,.10)', zIndex: 60}}>

@@ -4,4 +4,4 @@ interface:
   brand_color: "#3451B2"
   default_prompt: "Use $infistar-video to turn my Chinese oral script into a complete explainer video in the validated clean editorial style, with selectable 16:9, 9:16, or 1:1 format."
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

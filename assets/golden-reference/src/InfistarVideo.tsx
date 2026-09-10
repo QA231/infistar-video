@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {Audio} from '@remotion/media';
-import {Caption} from './components/Common';
+import {Caption, DEFAULT_EMPHASIS} from './components/Common';
 import {SHOTS, TOTAL_FRAMES, shotById, type Shot, type ShotId} from './timeline';
 import {
   ApiKeyScene,
@@ -26,7 +26,10 @@ import {
 } from './scenes/EditorialScenes';
 import {CreatorScene, InstallScene, PluginEcosystemScene, WorkspaceTourScene} from './scenes/ShotcraftScenes';
 
-export type InfistarVideoProps = {bgm: boolean};
+export type InfistarVideoProps = {
+  bgm: boolean;
+  emphasisTerms?: string[];
+};
 
 const SceneMap: Record<ShotId, React.FC> = {
   hook: HookScene,
@@ -90,26 +93,26 @@ const SFX: Sfx[] = [
   {from: at('outro', 0), src: 'transition-soft.mp3', volume: 0.20},
 ];
 
-const Scene: React.FC<{shot: Shot}> = ({shot}) => {
+const Scene: React.FC<{shot: Shot; emphasisTerms: string[]}> = ({shot, emphasisTerms}) => {
   const Component = SceneMap[shot.id];
   const cleanFrame = shot.id === 'host-map' || shot.id === 'plugin-white';
   const light = ['hook', 'promise', 'not-model', 'codex-compare', 'api-key', 'workspace-boundary', 'mode-intro', 'ptc-mode', 'creator-mode'].includes(shot.id);
   return (
     <AbsoluteFill>
       <Component />
-      {!cleanFrame ? <Caption text={shot.text} duration={shot.duration} label={shot.id === 'hook' || shot.id === 'promise' ? '' : shot.label} dark={!light} /> : null}
+      {!cleanFrame ? <Caption text={shot.text} duration={shot.duration} label={shot.id === 'hook' || shot.id === 'promise' ? '' : shot.label} dark={!light} emphasisTerms={emphasisTerms} /> : null}
     </AbsoluteFill>
   );
 };
 
-export const InfistarVideo: React.FC<InfistarVideoProps> = ({bgm}) => {
+export const InfistarVideo: React.FC<InfistarVideoProps> = ({bgm, emphasisTerms = DEFAULT_EMPHASIS}) => {
   const frame = useCurrentFrame();
   const bgmVolume = frame < 30 ? (frame / 30) * 0.24 : frame > TOTAL_FRAMES - 50 ? ((TOTAL_FRAMES - frame) / 50) * 0.24 : 0.24;
   return (
     <AbsoluteFill style={{background: '#08090B'}}>
       {SHOTS.map((shot) => (
         <Sequence key={shot.id} from={shot.from} durationInFrames={shot.duration} premountFor={30}>
-          <Scene shot={shot} />
+          <Scene shot={shot} emphasisTerms={emphasisTerms} />
         </Sequence>
       ))}
       {bgm ? <Audio src={staticFile('audio/bgm-tech-house.mp3')} volume={Math.max(0, bgmVolume)} /> : null}

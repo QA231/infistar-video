@@ -2,7 +2,7 @@
 
 > 一句话，把你的口播稿直接变成一条完整视频！
 
-把中文口播稿自动制作成解说视频的 Codex / Claude Code 技能。视觉上采用浅色编辑卡片与深色产品/录屏画面交替，配合大号中文字幕和克制动效。
+把中文口播稿先整理成自然、可朗读、可验证的旁白，再制作成解说视频的 Codex / Claude Code 技能。视觉上采用浅色编辑卡片与深色产品/录屏画面交替，配合大号中文字幕和克制动效。
 
 支持横屏 `16:9`、竖屏 `9:16`、方形 `1:1`，不把成片锁死在单一比例。
 
@@ -16,12 +16,13 @@
 
 ## 它能做什么
 
+- 保存原稿，去除明显 AI 套话和宣传腔，生成旁白定稿、字幕依据和修改记录。
 - 自动拆稿，把口播稿映射成钩子、承诺、概念、证据、操作、比较、提醒和结论。
 - 以真实操作与官方素材为证据主体，用网页、软件、终端和模型输出支撑结论，不伪造产品结果。
 - 生成 Remotion 工程，使用确定性动画和可复现渲染。
 - 制作中文旁白、SFX 和可选 BGM，并交付带 BGM / 无 BGM 两版。
 - 执行逐镜头静帧检查、技术规格检查和独立终检。
-- 根据用户要求或目标平台选择横屏、竖屏或方形画幅。
+- 根据用户要求或目标平台选择横屏、竖屏或方形画幅；当前 golden reference 仅直接支持 16:9。
 
 ## 支持画幅
 
@@ -31,7 +32,7 @@
 | 竖屏 | `9:16` | `1080×1920` | 抖音、快手、视频号、Reels、Shorts |
 | 方形 | `1:1` | `1080×1080` | 小红书、信息流、部分电商社媒 |
 
-未指定画幅时默认使用横屏 `16:9`，但技能会在制作前先确认或推断目标画幅，并写入 `design-spec.md`。
+未指定画幅时默认使用横屏 `16:9`，但技能会在制作前确认或推断目标画幅，并写入 `design-spec.md`。竖屏和方形只有在完成独立版式重排与渲染验证后才能交付。
 
 ## 安装
 
@@ -78,12 +79,25 @@ infistar-video/
 ├─ references/
 │  ├─ video-formats.md
 │  ├─ evidence-and-review.md
+│  ├─ script-humanization.md
+│  ├─ asset-capture.md
 │  ├─ shotcraft-baseline.md
+│  ├─ shot-library.md
+│  ├─ sound-design.md
+│  ├─ music-beat-sync.md
+│  ├─ aesthetic-rules.md
+│  ├─ final-review.md
 │  ├─ style-dna.md
 │  ├─ production-workflow.md
 │  └─ qa-checklist.md
+├─ templates/
+│  ├─ design-spec.md
+│  ├─ storyboard.md
+│  ├─ script-edit.md
+│  ├─ asset-manifest.md
+│  └─ review-packet.md
 ├─ assets/
-│  ├─ golden-reference/       # 已验收的 Remotion 参考工程
+│  ├─ golden-reference/       # 16:9 Agent Studio 主题参考工程
 │  └─ style-reference/        # 画面校准图
 ├─ LICENSES/
 └─ THIRD_PARTY_NOTICES.md
@@ -116,13 +130,13 @@ Use $infistar-video to turn my Chinese oral script into a complete 16:9 AI expla
 
 ## 参考工程
 
-`assets/golden-reference/` 是一个已验收的 Remotion 参考实现，用于复用色板、字体、字幕切分、确定性缓动、时间线计算、镜头注册、浅色编辑镜头、深色产品/录屏镜头、Shotcraft 动效、真实操作呈现和 SFX 钉帧。
+`assets/golden-reference/` 是一个 16:9、Agent Studio 主题的 Remotion 参考实现，用于复用色板、字体、字幕切分、确定性缓动、时间线计算、镜头注册、浅色编辑镜头、深色产品/录屏镜头、Shotcraft 动效、真实操作呈现和 SFX 钉帧。它不是通用成片模板，也不是完整镜头库。
 
-它被刻意设计为参考实现，不是开箱即完整渲染的成品。仓库不包含 `public/audio/`、`public/media/` 中的实际音频和截图素材；使用时应替换为你自己的证据、界面、截图、音频和声音配置。制作竖屏或方形视频时，参考工程只复用方法与 tokens，不直接复用绝对坐标，版式必须重排。
+它被刻意设计为参考实现，不是开箱即完整渲染的成品。必需运行时文件、推荐分辨率和替换要求见 `assets/golden-reference/ASSET_MANIFEST.md`；仓库不包含 `public/audio/`、`public/media/` 中的实际音频和截图素材。使用时应替换为你自己的证据、界面、截图、音频和声音配置。制作竖屏或方形视频时，参考工程只复用方法与 tokens，不直接复用绝对坐标，版式必须重排并单独验证。
 
 ## 声音配置
 
-本技能默认需要中文旁白，但不会内置任何个人声线、参考音频路径或 voice ID。
+本技能默认需要中文旁白，但不会内置任何个人声线、参考音频路径或 voice ID。旁白生成前先执行 `references/script-humanization.md`，并遵守项目 `AGENTS.md` 的授权规则。
 
 请在你的项目 `AGENTS.md` 中配置已获授权的 voice ID 或参考音频。模型调用配音服务前必须确认服务支持该配置，禁止臆造 ID。用户明确说“先不配音/不要配音”时，只制作字幕、SFX 和可选 BGM。
 
@@ -132,6 +146,7 @@ Use $infistar-video to turn my Chinese oral script into a complete 16:9 AI expla
 - FFmpeg，并加入 `PATH`
 - Remotion `4.0.484`
 - React `19.2.7`
+- 运行时媒体和音频素材必须按 `assets/golden-reference/ASSET_MANIFEST.md` 自行准备
 
 参考工程脚本：
 
@@ -154,8 +169,9 @@ npm run render:nobgm
 
 - 不要公开 `.env`、密钥、个人数据、内部地址或声音样本。
 - 真实页面、录屏和模型输出优先，证据不足时先列补录清单，不伪造结果。
-- 付费素材生成、配音生成和发布操作必须在执行前获得用户明确授权。
+- 付费素材生成、配音生成、声音克隆、浏览器登录、终端执行和发布操作必须在执行前获得用户明确授权。
+- `agents/openai.yaml` 默认关闭隐式调用，只有用户明确调用该技能时才进入视频制作流程。
 
 ## 第三方来源
 
-本仓库把部分上游技能规则进行了精简、改写和内置，来源与许可证见 `THIRD_PARTY_NOTICES.md` 和 `LICENSES/`。
+本仓库把部分上游技能规则进行了精简、改写和内置，来源与许可证见 `THIRD_PARTY_NOTICES.md` 和 `LICENSES/`。其中 Humanizer-zh 只内置与中文口播相关的编辑原则，不会自动安装或依赖外部技能。
